@@ -3,6 +3,8 @@
 With this plugin you able to add charts into your content.
 This plugin using [Chartist.js](https://gionkunz.github.io/chartist-js/) libary for rendering graphs.
 
+![Charts TinyMCE Plugin - Visual demo](demo.gif)
+
 ## How to test it:
 
 ```
