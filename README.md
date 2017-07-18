@@ -11,7 +11,7 @@ This plugin using [Chartist.js](https://gionkunz.github.io/chartist-js/) libary 
 git clone https://github.com/Axel186/charts-tinymce-plugin.git
 cd charts-tinymce-plugin
 npm install
-npm run build
+npm start
 ```
 
 Now go to `http://localhost:8080`.
