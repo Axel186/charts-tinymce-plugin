@@ -1,0 +1,64 @@
+svg {
+    overflow: hidden;
+}
+
+.nav-link, button{
+    cursor: pointer;
+}
+
+.container{
+    margin-top: 10px;
+    width: auto;
+}
+
+form{
+    padding: 10px;
+}
+
+form .row{
+    margin-bottom: 10px;
+}
+
+.mce-foot{
+    margin-top: 10px;
+    display: block;
+    background-color: #FFF;
+    border-top: 1px solid #c5c5c5;
+    padding: 10px;
+}
+
+.mce-btn{
+    display: inline-block;
+    padding: 0px 5px;
+}
+.mce-btn button {
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    text-align: center;
+    overflow: visible;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 0;
+}
+
+.mce-btn {
+    border: 1px solid #b1b1b1;
+    border-color: transparent transparent transparent transparent;
+    position: relative;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    display: inline-block;
+    background-color: #f0f0f0;
+}
+
+.mce-primary {
+    color: #fff !important;
+    border: 1px solid transparent;
+    border-color: transparent;
+    background-color: #2d8ac7;
+}
+
+.mce-primary span {
+    color: #fff !important;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'chartsTinymcePlugin noneditable',
+      external_plugins: {'chartsTinymcePlugin': 'http://localhost:8080/src/plugin.js'},
+      toolbar: 'chartsTinymcePlugin',
+      content_css: 'http://localhost:8080/src/app/scripts/chartist/chartist.min.css',
+      chart_uploader: function (file, cb) {
+        // Start uploading process.
+        var content = file.html;
+        cb(content);
+      }
+    });
+  </script>
+</head>
+<body>
+<textarea>Testing chartsTinymcePlugin</textarea>
+</body>
+</html>

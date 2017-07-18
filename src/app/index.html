@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Charts plugin</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<link rel="stylesheet" href="scripts/chartist/chartist.min.css">
+
+<body ng-app="app">
+
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.
+</p>
+<![endif]-->
+<div class="container" ng-controller="MainCtrl as $ctrl" id="main" style="visibility: hidden">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" ng-repeat="chart in $ctrl.series track by $index">
+      <a class="nav-link"
+         ng-class="(chart === $ctrl.selectedSerie)? 'active': ''"
+         ng-click="$ctrl.selectSerie(chart)">{{$index + 1}}. {{ $ctrl.series[$index].name }}</a>
+    </li>
+    <li class="nav-item"><a class="nav-link" href="javascript:void(0);" ng-click="$ctrl.addSerie()">[+]</a></li>
+    <li class="col"></li>
+    <li class="nav-item">
+      <button class="btn btn-primary" ng-click="$ctrl.showLabelsScreen()">Labels</button>
+      &nbsp;
+    </li>
+    <li class="nav-item">
+      <button class="btn btn-primary" ng-click="$ctrl.showSettingsScreen()">Settings</button>
+    </li>
+  </ul>
+
+  <form ng-submit="$ctrl.submit();">
+    <div ng-show="!$ctrl.showSettings && !$ctrl.showLabels">
+      <div class="form-group">
+        <label for="serie-name">Name</label>
+        <input type="text" class="form-control" id="serie-name" ng-model="$ctrl.selectedSerie.name"/>
+      </div>
+
+      <div class="form-group row" ng-repeat="label in $ctrl.labels track by $index">
+        <label for="chart-{{$index}}" class="col-2 col-form-label">{{label}}</label>
+        <div class="col">
+          <input type="text" class="form-control form-control" id="chart-{{$index}}"
+                 ng-model="$ctrl.selectedSerie.data[$index]">
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="$ctrl.showSettings">
+      <div class="form-group">
+        <label for="grid-type">Type</label>
+        <select class="form-control" id="grid-type" name="grid-type" ng-model="$ctrl.grid.type">
+          <option ng-repeat="(key, type) in $ctrl.types" value="{{key}}">{{type}}</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-6 d-flex">
+          <label for="grid-width" class="col-form-label">Width:</label>
+          <div class="col"><input type="grid-width" class="form-control form-control" id="grid-width"
+                                  ng-model="$ctrl.grid.width"></div>
+        </div>
+        <div class="col-6 d-flex">
+          <label for="grid-height" class="col-form-label">Height:</label>
+          <div class="col"><input type="grid-height" class="form-control form-control" id="grid-height"
+                                  ng-model="$ctrl.grid.height"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 d-flex">
+          <label for="grid-y-min" class="col-form-label">y-min:</label>
+          <div class="col"><input type="grid-y-min" class="form-control form-control" id="grid-y-min"
+                                  ng-model="$ctrl.grid.low"></div>
+        </div>
+        <div class="col-6 d-flex">
+          <label for="grid-y-max" class="col-form-label">y-max:</label>
+          <div class="col"><input type="grid-y-max" class="form-control form-control" id="grid-y-max"
+                                  ng-model="$ctrl.grid.high"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 d-flex">
+          <label for="grid-metric-name-y" class="col-form-label">Metric name Y:</label>
+          <div class="col"><input type="grid-metric-name-y" class="form-control form-control" id="grid-metric-name-y"
+                                  ng-model="$ctrl.grid.metricNameY"></div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="$ctrl.showLabels">
+      <div class="row" ng-repeat="label in $ctrl.labels track by $index">
+        <div class="col d-flex">
+          <label for="chart-label-{{ $index }}" class="col-form-label">{{ $index+1 }}</label>
+          <div class="col">
+            <input type="text" class="form-control form-control" id="chart-label-{{ $index }}"
+                   ng-model="$ctrl.labels[$index]">
+          </div>
+          <div class="col-1">
+            <button type="button" class="btn btn-sm btn-danger" ng-click="$ctrl.removeLabel($index);">Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-sm btn-primary" ng-click="$ctrl.addLabel();" style="margin-left: 25px">
+            Add new Label
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-left">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+      <div class="col text-right" ng-show="!$ctrl.showSettings && !$ctrl.showLabels">
+        <button type="submit" class="btn btn-danger" ng-show="$ctrl.series.length > 1" ng-click="$ctrl.removeSerie()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <hr>
+
+  <div id="preview" class="text-center">
+    <div class="ct-chart mceNonEditable tinymce-chart" id="previewsvg"></div>
+  </div>
+</div>
+
+<script type="text/javascript" src="scripts/chartist/chartist.js"></script>
+<script type="text/javascript" src="scripts/angular.min.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+
+</body>
+</html>
