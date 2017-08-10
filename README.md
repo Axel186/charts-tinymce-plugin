@@ -7,31 +7,29 @@ This plugin compatible with TinyMce 4.
 
 ![Charts TinyMCE Plugin - Visual demo](demo.gif)
 
-## How to test it:
+## Install
 
+### NPM:
 ```
-git clone https://github.com/Axel186/charts-tinymce-plugin.git
-cd charts-tinymce-plugin
-npm install
-npm start
+npm install charts-tinymce-plugin --save
 ```
 
-Now go to `http://localhost:8080`.
-
-## How to build the dist files:
-
+### Bower:
 ```
-npm run build
+bower install charts-tinymce-plugin --save
 ```
 
-Now you got your own `dist` folder - minimized version of plugin already there.
+### Download
 
-### Configure your TinyMce:
+* [Latest build](https://github.com/Axel186/charts-tinymce-plugin-bower/archive/master.zip)
+
+## Usage
+
+Configure your TinyMce init settings by adding `external_plugins` and usage of `chartsTinymcePlugin`: 
 
 ```Javascript
 tinymce.init({
   selector: 'textarea',
-  plugins: 'chartsTinymcePlugin',
   external_plugins: {'chartsTinymcePlugin': 'http://your-website/.../charts-tinymce-plugin/plugin.js'}, // Add plugin to Tinymce
   toolbar: 'chartsTinymcePlugin',
   content_css: 'http://your-website/.../charts-tinymce-plugin/app/scripts/chartist/chartist.css', // Add chartist styles or use your own.
@@ -50,10 +48,29 @@ tinymce.init({
 });
 ```
 
-There are 2 options to use this plugin:
+There are 2 options how to use this plugin:
 
 1. Add SVG tag width graph into your content, I found that is very hard to work with SVG into Tinymce. It's hard to align or edit because it contains a lot of tags inside.
 2. Is to upload "Blob file" that plugin returns to your own server and after that add the IMG tag with path to the file. If you are using this method, you able to edit the graph and update the changes. (Take a look at the screenshot above).
+
+## How to test it:
+
+```
+git clone https://github.com/Axel186/charts-tinymce-plugin.git
+cd charts-tinymce-plugin
+npm install
+npm start
+```
+
+Now go to `http://localhost:8080`.
+
+## How to build the dist files:
+
+```
+npm run build
+```
+
+Now you got your own `dist` folder - minimized version of plugin already there.
 
 ## The development server
 
